@@ -9,7 +9,7 @@ socket.on('connect', function() {
 });
 ////////////////////////////////////
 // SERVER SIDE
-var http = require('https'),
+var https = require('https'),
 io_server = require('socket.io');
 var fs = require('fs');
 
@@ -18,7 +18,7 @@ var options = {
   cert: fs.readFileSync('./real-keys/cert.pem')
 };
 
-var server = http.createServer(options, function(req, res)
+var server = https.createServer(options, function(req, res)
 {
   res.writeHead(404, {'Content-Type': 'text/html'});
   res.end('<h1>Hello from Proxy! 404</h1>');
