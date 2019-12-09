@@ -4,7 +4,7 @@ var https = require('http'),
   io_server = require('socket.io');
 var fs = require('fs');
 ///////////////////////////////////////////////////////////////////////////////////////
-// FOR
+// FOR HTTPS
 var options = {
   key: fs.readFileSync('./real-keys/key.pem'),
   cert: fs.readFileSync('./real-keys/cert.pem')
