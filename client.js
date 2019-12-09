@@ -21,7 +21,7 @@ var options = {
 var server = https.createServer(options, function(req, res)
 {
   res.writeHead(404, {'Content-Type': 'text/html'});
-  res.end('<h1>Hello from Proxy! 404</h1>');
+  res.end('<h1>Hello from Proxy!</h1>');
 });
 
 server.listen(8088);
