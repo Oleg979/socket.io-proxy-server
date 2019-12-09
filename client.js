@@ -44,6 +44,9 @@ io_server.sockets.on('connection', function (socket_server) {
   socket_client.on("presence", isChannelPresent => {
     socket_server.emit('presence', isChannelPresent);
   })
+  socket_client.on("connect", isConnected => {
+    socket_server.emit('connect', true);
+  })
   ////////////////////////////////////////////////
   //Here we recevie requests from actual clients to our proxy and forward them to server
   socket_server.on("request", data => {
