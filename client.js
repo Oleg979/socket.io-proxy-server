@@ -43,18 +43,49 @@ io_server.sockets.on('connection', function (socket_server) {
   })
 
   socket_client.on("response", data => {
-    socket_server.emit("response")
+    socket_server.emit("response", data)
   })
   ////////////////////////////////////////////////
   //Here we recevie requests from actual clients to our proxy and forward them to server
   console.log('Client connected to proxy');
 
-  socket_server.on("request", () => {
-    socket_client.emit("request");
+  socket_server.on("request", data => {
+    console.log('Request from client to server');
+    socket_client.emit("request", data);
   })
 
-  socket_server.on('disconnect', function () {
-    console.log('Client disconnected from proxy.');
-  });
+  socket_server.on("new-channel", data => {
+    console.log('New channel from client to server');
+    socket_client.emit("new-channel", data);
+  })
+
+  socket_server.on("disconnect", data => {
+    console.log('Disconnect from client to server');
+    socket_client.emit("disconnect", data);
+  })
+
+  socket_server.on("presence", data => {
+    console.log('Presence from client to server');
+    socket_client.emit("presence", data);
+  })
+
+
+  function onNewNamespace(channel, sender) {
+    io_server.of('/' + channel).on('connection', function (socket) {
+      console.log("connect to channel: " + channel);
+
+      socket.on('message', function (data) {
+        console.log("mesage from channel: " + channel);
+        socket_client.emit("presence", data.data);
+      });
+
+      socket.on('disconnect', function () {
+        console.log("mesage from channel: " + channel);
+        socket_client.emit("disconnect");
+      });
+    })
+  }
+
+
 });
 ///////////////////////////////////////////////////////////////////////////////////////

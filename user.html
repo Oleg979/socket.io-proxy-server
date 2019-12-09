@@ -10,8 +10,8 @@
         var socket = io.connect('http://localhost:8088');
         socket.on('connect', () => {
             console.log("Client connected to proxy");
-            socket.emit("request");
-            socket.on("response", () => console.log("Response received"));
+            socket.emit("request", { num: 10 });
+            socket.on("response", data => console.log("Response received " + data.num));
         })
     </script>
     <title>Document</title>
