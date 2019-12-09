@@ -1,1 +1,1 @@
-openssl req -new -key ./config/sslcerts/key.pem -out ./config/sslcerts/csr.pem
+openssl req -new -key ./real-keys/key.pem -out ./real-keys/csr.pem
