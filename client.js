@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////////////////////
-var https = require("http"),
+var https = require("https"),
   io_server = require("socket.io");
 var fs = require("fs");
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -19,7 +19,7 @@ socket_client.on("connect", function() {
 });
 ///////////////////////////////////////////////////////////////////////////////////////
 // SERVER SIDE
-var server = https.createServer(function(req, res) {
+var server = https.createServer(options, function(req, res) {
   res.writeHead(404, { "Content-Type": "text/html" });
   res.end("<h1>Hello from Proxy!</h1>");
 });
