@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.0/socket.io.js"></script>
     <script>
-        var socket = io.connect('http://localhost:8088');
-        socket.on('connect', () => {
-            console.log("Client connected to proxy");
-            socket.emit("request", { num: 10 });
-            socket.on("response", data => console.log("Response received " + data.num));
-        })
+      io.connect("http://localhost:8088").emit("new-channel", {
+        channel: "original_index",
+        sender: "1234"
+      });
+      const socket = io.connect("http://localhost:8088/original_index");
+      socket.emit("message", {
+        sender: "1234",
+        data: {
+          sender: "1234",
+          payload: "asdadasds"
+        }
+      });
     </script>
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-
-</body>
-
+  <body></body>
 </html>
