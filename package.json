@@ -12,7 +12,7 @@
   "dependencies": {
     "http": "0.0.0",
     "https": "^1.0.0",
-    "socket.io": "0.9.x",
+    "socket.io": "2.4.x",
     "socket.io-client": "0.9.x"
   }
 }
